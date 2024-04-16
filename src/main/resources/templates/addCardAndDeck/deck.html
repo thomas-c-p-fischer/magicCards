@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Deck</title>
+    </head>
+    <body>
+        <h2>Add Deck</h2>
+        <form action="#" th:action="@{/decks}" th:object="${deck}" method="post">
+            <label for="name">Deck Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="cardName">Card Name:</label>
+            <input type="text" id="cardName" name="cardNames" required>
+            <br>
+            <label for="cardEdition">Card Edition:</label>
+            <input type="text" id="cardEdition" name="cardEditions" required>
+            <br>
+            <label for="cardType">Card Type:</label>
+            <input type="text" id="cardType" name="cardTypes" required>
+            <br>
+            <label for="cardMana">Card Mana:</label>
+            <input type="text" id="cardMana" name="cardManas" required>
+            <button type="button" id="addCard">Add Card</button>
+            <div id="cardFields"></div>
+            <br>
+            <button type="submit">Add Deck</button>
+        </form>
+        <script th:inline="javascript">
+            var cardIndex = 1;
+            document.getElementById('addCard').addEventListener('click', function() {
+                var cardGroup = document.createElement('div');
+                cardGroup.classList.add('cardGroup');
+                cardGroup.innerHTML = '<label for="cardName">Card Name:</label>' +
+                    '<input type="text" class="cardName" name="cardNames" required><br>' +
+                    '<label for="cardEdition">Card Edition:</label>' +
+                    '<input type="text" class="cardEdition" name="cardEditions" required><br>' +
+                    '<label for="cardType">Card Type:</label>' +
+                    '<input type="text" class="cardType" name="cardTypes" required><br>' +
+                    '<label for="cardMana">Card Mana:</label>' +
+                    '<input type="text" class="cardMana" name="cardManas" required>';
+                document.getElementById('cardFields').appendChild(cardGroup);
+                document.querySelector('form').appendChild(cardGroup);
+            });
+        </script>
+    </body>
+</html>
